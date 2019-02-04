@@ -1,0 +1,42 @@
+# localhost:8080/h2-console
+# JDBC URL:jdbc:h2:mem:testdb
+spring:
+  profiles:
+    active: local # 기본환경 선택
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+# local 환경
+---
+spring:
+  profiles: local
+  #datasource:
+    #data: classpath:data-h2.sql # 시작할때 실행시킬 script
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+# --- 상단은 공통 영역, 하단은 각 profile의 설정 영역
+# 공통영역에 설정값을 넣는것에 굉장한 주의가 필요
+---
+spring:
+  profiles: mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.99.100:3306/testdb?serverTimezone=UTC
+    username: root
+    password: 88880123
+  jpa:
+    show-sql: true
+    #database: MYSQL
+    #generate-ddl: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
