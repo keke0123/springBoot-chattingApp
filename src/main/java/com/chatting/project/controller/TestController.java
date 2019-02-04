@@ -30,4 +30,9 @@ public class TestController {
 		mView.setViewName("/index");
 		return mView;
 	}
+	@GetMapping("/sample")
+	public ModelAndView samplePage(ModelAndView mView) {
+		mView.setViewName("/test");
+		return mView;
+	}
 }
