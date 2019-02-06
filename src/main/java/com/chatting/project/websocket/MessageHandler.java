@@ -23,6 +23,7 @@ public class MessageHandler {
     @MessageMapping("/all")
     @SendTo("/topic/all")
     public Map<String, String> post(@Payload Map<String, String> message) {
+    	// @payload 는 serialize 되어있는걸 object 로 바꿔 주는 역할을 하는거 같은데 안붙여도 정상동작은 했다.
         message.put("timestamp", Long.toString(System.currentTimeMillis()));
         return message;
     }
